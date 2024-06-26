@@ -3,7 +3,9 @@
 # Determine the directory of the current script, that is, the tiny_gestures directory
 TINY_GESTURES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Get sample path
+echo "$TINY_GESTURES_DIR"
+
+# generate target samples' path
 python3 "$TINY_GESTURES_DIR/read_images_path.py"
 if [ $? -ne 0 ]; then
     echo "Failed to run read_images_path.py"
@@ -12,8 +14,6 @@ fi
 
 # Write a file to put classes' labels into it
 echo -e "fist\nlike\nok\npalm\npeace\npeace_inv\nstop" > "$TINY_GESTURES_DIR/classes.txt"
-
-classes_file="$TINY_GESTURES_DIR/classes.txt"
 
 if [ -f "$classes_file" ]; then
     num_categories=$(grep -v '^[[:space:]]*$' "$classes_file" | wc -l)
@@ -31,10 +31,16 @@ OBJ_DATA_PATH="$TINY_GESTURES_DIR/training_control_file.txt"
 CFG_PATH="$TINY_GESTURES_DIR/yolov4-tiny-custom.cfg"
 WEIGHTS_PATH="$TINY_GESTURES_DIR/yolov4-tiny.conv.29"
 
+echo "$WEIGHTS_PATH"
+
 # Enter the darknet directory and run the training command
 DARKNET_DIR="$TINY_GESTURES_DIR/darknet"
+echo "$DARKNET_DIR"
+
+cd "$DARKNET_DIR"
 
 # Run training command with nohup and redirect output to a log file
-nohup $DARKNET_DIR/darknet detector train "$OBJ_DATA_PATH" "$CFG_PATH" "$WEIGHTS_PATH" -map > "$TINY_GESTURES_DIR/training.log" 2>&1 &
+nohup ./darknet detector train "$OBJ_DATA_PATH" "$CFG_PATH" "$WEIGHTS_PATH" -map
 
 echo "Training has started. Check training.log for progress."
+

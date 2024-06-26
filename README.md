@@ -24,12 +24,11 @@ There are two dataset compressed file, respectively names as "images_train.zip" 
 
 ---
 The download link from onedrive is here: 
+https://m365rwthaachende.sharepoint.com/:f:/s/GINI/EmVqjWBB-qdKtGxH_1NiHjcBxwssn5BMaZ_F7c3wc1bwTA
 
-images_train.zip:
-https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokumente/Software%20Development/ai/gesture_recognition/tinyyolov4/dataset/images_train.zip?csf=1&web=1&e=EDLzcl
+The dataset includes: images_train.zip & images_val.zip
 
-images_val.zip:
-https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokumente/Software%20Development/ai/gesture_recognition/tinyyolov4/dataset/images_val.zip?csf=1&web=1&e=dVnggP
+They are all put into the directory, which path is: "Development/ai/gesture_recognition/tinyyolov4/dataset"
 
 ---
 
@@ -52,8 +51,6 @@ After unzip the dataset, the structure of this project folder(tiny_gestures) is 
 ├── detect
 ├── images_train
 ├── images_val
-├── obj.data
-├── obj.name
 ├── read_images_path.py
 ├── README.md
 ├── requirements.txt
@@ -99,11 +96,6 @@ and run `pkill darknet` or `kill 12345`to end the training process. 12345 is jus
 
 
 
-
-
-
-
-
 # Inference
 
 `cd` to the root path of the `tiny_gestures`repositiory in the terminal.
@@ -112,6 +104,12 @@ run `chmod +x step3__start_inference.sh` in the terminal.
 
 run `./step3__start_inference.sh` to run the script to inference.
 
+
+# Data Augment
+
+run the `data_augment_nonScaling.py`(u should change the directory path which store the target samples by yourselves).Target samples means the images and corresponding label .txt file.
+
+Then u will get more augmented images and the script will gengerate corresponding labeling .txt file simutaneously.
 
 # More Details
 
